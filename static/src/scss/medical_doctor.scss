@@ -1,0 +1,293 @@
+/* SCSS para la vista Kanban de doctores médicos */
+
+// Variables de colores
+$primary-blue: #1976d2;
+$secondary-blue: #0d47a1;
+$light-blue: #bbdefb;
+$accent-blue: #64b5f6;
+$text-dark: #2c3e50;
+$text-light: #ecf0f1;
+$success-green: #4caf50;
+$warning-orange: #ff9800;
+$danger-red: #f44336;
+$card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+// Animaciones
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Mixins
+@mixin card-gradient {
+  background: linear-gradient(135deg, $primary-blue 0%, $secondary-blue 100%);
+}
+
+@mixin button-hover {
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Estilos generales de la vista Kanban
+.o_medical_doctor_kanban {
+  padding: 16px;
+  background-color: #f5f8fa;
+  
+  .o_kanban_record {
+    padding: 0;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $hover-shadow;
+    }
+  }
+}
+
+// Tarjeta de doctor
+.o_medical_doctor_card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 280px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: $card-shadow;
+  overflow: hidden;
+  
+  &_hover {
+    animation: pulse 1s ease;
+  }
+}
+
+// Cabecera de la tarjeta del doctor
+.o_medical_doctor_card_header {
+  @include card-gradient;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  color: $text-light;
+  
+  .o_medical_doctor_avatar {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    .o_medical_doctor_initials {
+      font-size: 24px;
+      font-weight: bold;
+      color: $primary-blue;
+    }
+  }
+  
+  .o_medical_doctor_info {
+    flex-grow: 1;
+    
+    .o_medical_doctor_name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    
+    .o_medical_doctor_specialization {
+      font-size: 14px;
+      opacity: 0.9;
+      
+      .fa {
+        margin-right: 4px;
+      }
+    }
+  }
+  
+  .o_medical_doctor_status {
+    .o_medical_doctor_availability {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      
+      .fa-circle {
+        color: $success-green;
+        margin-right: 4px;
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+// Cuerpo de la tarjeta del doctor
+.o_medical_doctor_card_body {
+  flex-grow: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: white;
+  
+  .o_medical_doctor_contact {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $light-blue;
+    
+    .o_medical_doctor_email,
+    .o_medical_doctor_phone {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: $text-dark;
+      
+      .fa {
+        width: 16px;
+        margin-right: 8px;
+        color: $primary-blue;
+      }
+    }
+  }
+  
+  .o_medical_doctor_schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    .o_medical_doctor_schedule_title {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: $text-dark;
+      
+      .fa {
+        width: 16px;
+        margin-right: 8px;
+        color: $primary-blue;
+      }
+    }
+    
+    .o_medical_doctor_schedule_details {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background-color: $light-blue;
+      border-radius: 4px;
+      
+      .o_medical_doctor_day {
+        font-weight: 600;
+      }
+      
+      .o_medical_doctor_hours {
+        background-color: white;
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: 13px;
+        color: $primary-blue;
+      }
+    }
+  }
+}
+
+// Pie de la tarjeta del doctor
+.o_medical_doctor_card_footer {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  background-color: #f5f9ff;
+  border-top: 1px solid $light-blue;
+  
+  .o_medical_doctor_btn_appointments {
+    @include button-hover;
+    flex: 1;
+    background-color: $primary-blue;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    
+    .fa {
+      margin-right: 4px;
+    }
+  }
+  
+  .o_medical_doctor_btn_message {
+    @include button-hover;
+    flex: 1;
+    background-color: white;
+    color: $primary-blue;
+    border: 1px solid $primary-blue;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    
+    .fa {
+      margin-right: 4px;
+    }
+  }
+}
+
+// Animación para tarjetas entrantes
+.animated {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+// Responsive
+@media (max-width: 767px) {
+  .o_medical_doctor_card_header {
+    flex-direction: column;
+    text-align: center;
+    
+    .o_medical_doctor_avatar {
+      margin-right: 0;
+      margin-bottom: 12px;
+    }
+    
+    .o_medical_doctor_status {
+      margin-top: 8px;
+    }
+  }
+  
+  .o_medical_doctor_card_footer {
+    flex-direction: column;
+  }
+}

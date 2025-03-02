@@ -1,0 +1,65 @@
+/* Estilos para el widget de statusbar personalizado */
+.appointment-statusbar {
+    margin: 15px 0;
+    min-height: 40px;
+    
+    .appointment-status-container {
+        display: flex;
+        background-color: #f5f5f5;
+        border-radius: 50px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .status-option {
+        padding: 8px 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.95em;
+        
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        &.selected {
+            font-weight: bold;
+        }
+        
+        i {
+            margin-right: 6px;
+        }
+    }
+    
+    /* Estilo para versión de solo lectura */
+    .appointment-status {
+        padding: 8px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.95em;
+        display: inline-flex;
+        align-items: center;
+        
+        i {
+            margin-right: 6px;
+        }
+    }
+}
+
+/* Estilos responsivos */
+@media (max-width: 767px) {
+    .appointment-statusbar {
+        .appointment-status-container {
+            flex-direction: column;
+            border-radius: 8px;
+        }
+        
+        .status-option {
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,105 @@
+/* Estilos para la vista kanban de citas médicas */
+.kanban-view {
+    .o_kanban_renderer {
+        padding: 16px 8px;
+        
+        .o_kanban_record {
+            padding: 0;
+            margin-bottom: 16px;
+        }
+    }
+    
+    .appointment-card {
+        border-radius: 8px;
+        padding: 16px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #ccc;
+        background-color: #ffffff;
+        
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Estilos según el estado */
+        &.appointment-scheduled {
+            border-left-color: #3498db;
+            background-color: #ffffff;
+            
+            .status {
+                color: #3498db;
+                background-color: rgba(52, 152, 219, 0.1);
+            }
+        }
+        
+        &.appointment-done {
+            border-left-color: #2ecc71;
+            background-color: #ffffff;
+            
+            .status {
+                color: #2ecc71;
+                background-color: rgba(46, 204, 113, 0.1);
+            }
+        }
+        
+        &.appointment-canceled {
+            border-left-color: #e74c3c;
+            opacity: 0.8;
+            
+            .status {
+                color: #e74c3c;
+                background-color: rgba(231, 76, 60, 0.1);
+            }
+            
+            strong, div:not(.status) {
+                text-decoration: line-through;
+                opacity: 0.7;
+            }
+        }
+        
+        &.appointment-no_show {
+            border-left-color: #f39c12;
+            
+            .status {
+                color: #f39c12;
+                background-color: rgba(243, 156, 18, 0.1);
+            }
+        }
+        
+        /* Estilos para campos específicos */
+        strong {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            display: block;
+            color: #2c3e50;
+        }
+        
+        .date-field {
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-weight: 500;
+            
+            i {
+                margin-right: 5px;
+                color: #f39c12;
+            }
+        }
+        
+        .status {
+            margin-top: 12px;
+            padding: 4px 10px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 0.85em;
+            font-weight: 600;
+            
+            &:before {
+                content: "•";
+                margin-right: 5px;
+                font-size: 1.2em;
+            }
+        }
+    }
+}

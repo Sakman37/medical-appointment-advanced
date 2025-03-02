@@ -1,0 +1,62 @@
+/* Estilos para el formulario de citas médicas */
+.appointment-form {
+    .o_form_sheet {
+        max-width: 1140px;
+        margin: 0 auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        padding: 24px;
+        background-color: #ffffff;
+    }
+    
+    .o_group {
+        margin-bottom: 20px;
+        
+        .o_field_widget {
+            margin-bottom: 15px;
+            transition: all 0.2s ease;
+            
+            &:focus-within {
+                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            }
+        }
+    }
+    
+    /* Estilo para campos específicos */
+    .o_field_widget[name="patient_id"] {
+        font-weight: bold;
+        font-size: 1.1em;
+        
+        .o_input {
+            border-left: 4px solid #3498db;
+            padding-left: 8px;
+        }
+    }
+    
+    .o_field_widget[name="doctor_id"] {
+        .o_input {
+            border-left: 4px solid #2ecc71;
+            padding-left: 8px;
+        }
+    }
+    
+    .o_field_widget[name="date"] {
+        .o_input {
+            border-left: 4px solid #f39c12;
+            padding-left: 8px;
+            background-color: #f8f9fa;
+        }
+    }
+    
+    // Botones de acción personalizados
+    .o_form_buttons_edit, .o_form_buttons_view {
+        .btn-primary {
+            background-color: #3498db;
+            border-color: #2980b9;
+            
+            &:hover {
+                background-color: #2980b9;
+            }
+        }
+    }
+}

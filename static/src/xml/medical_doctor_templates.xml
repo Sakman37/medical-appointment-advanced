@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="medicalbackend.MedicalDoctorKanbanRecord" owl="1">
+        <div class="oe_kanban_global_click o_medical_doctor_card" 
+             t-att-class="{'o_medical_doctor_card_hover': state.isHovered}">
+            <div class="o_medical_doctor_card_header">
+                <div class="o_medical_doctor_avatar">
+                    <span class="o_medical_doctor_initials" t-esc="props.record.data.name.charAt(0).toUpperCase() + (props.record.data.name.split(' ')[1] ? props.record.data.name.split(' ')[1].charAt(0).toUpperCase() : '')"/>
+                </div>
+                <div class="o_medical_doctor_info">
+                    <div class="o_medical_doctor_name"><t t-esc="props.record.data.name"/></div>
+                    <div class="o_medical_doctor_specialization">
+                        <i class="fa fa-stethoscope"/> <t t-esc="props.record.data.specialization"/>
+                    </div>
+                </div>
+                <div class="o_medical_doctor_status">
+                    <span class="o_medical_doctor_availability">
+                        <i class="fa fa-circle"/> Disponible
+                    </span>
+                </div>
+            </div>
+            <div class="o_medical_doctor_card_body">
+                <div class="o_medical_doctor_contact">
+                    <div class="o_medical_doctor_email">
+                        <i class="fa fa-envelope"/> <t t-esc="props.record.data.email"/>
+                    </div>
+                    <div class="o_medical_doctor_phone">
+                        <i class="fa fa-phone"/> <t t-esc="props.record.data.phone"/>
+                    </div>
+                </div>
+                <div class="o_medical_doctor_schedule">
+                    <div class="o_medical_doctor_schedule_title">
+                        <i class="fa fa-calendar"/> Horario
+                    </div>
+                    <div class="o_medical_doctor_schedule_details">
+                        <span class="o_medical_doctor_day"><t t-esc="props.record.data.day_of_week"/></span>
+                        <span class="o_medical_doctor_hours">
+                            <t t-esc="props.record.data.start_time"/> - <t t-esc="props.record.data.end_time"/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="o_medical_doctor_card_footer">
+                <button class="btn o_medical_doctor_btn_appointments"
+                        t-on-click="onClickAppointments">
+                    <i class="fa fa-calendar-check-o"/> Ver Citas
+                </button>
+                <button class="btn o_medical_doctor_btn_message"
+                        t-on-click="onClickMessage">
+                    <i class="fa fa-comment"/> Mensaje
+                </button>
+            </div>
+        </div>
+    </t>
+</templates>

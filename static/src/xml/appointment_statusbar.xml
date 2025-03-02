@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="medicalbackend.AppointmentStatusBar" owl="1">
+        <div class="appointment-statusbar" t-ref="root">
+            <!-- El contenido se generará dinámicamente desde JavaScript -->
+        </div>
+    </t>
+</templates>
