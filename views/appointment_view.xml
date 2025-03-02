@@ -1,0 +1,60 @@
+<odoo>
+    <!-- Vistas para Citas Médicas -->
+    <record id="view_medical_appointment_form" model="ir.ui.view">
+        <field name="name">medical.appointment.form</field>
+        <field name="model">medical.appointment</field>
+        <field name="arch" type="xml">
+            <form string="Cita Médica" class="appointment-form" js_class="appointment_form_view">
+                <sheet>
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="doctor_id"/>
+                        <field name="date"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_medical_appointment_kanban" model="ir.ui.view">
+        <field name="name">medical.appointment.kanban</field>
+        <field name="model">medical.appointment</field>
+        <field name="arch" type="xml">
+            <kanban string="Citas Médicas" class="kanban-view" js_class="appointment_kanban_view">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card appointment-card">
+                            <strong><field name="patient_id"/></strong>
+                            <div><field name="doctor_id"/></div>
+                            <div class="date-field"><field name="date"/></div>
+                            <div class="status"><field name="state"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_medical_appointment_search" model="ir.ui.view">
+        <field name="name">medical.appointment.search</field>
+        <field name="model">medical.appointment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="date"/>
+                <field name="state"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_medical_appointment" model="ir.actions.act_window">
+        <field name="name">Citas Médicas</field>
+        <field name="res_model">medical.appointment</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    <menuitem id="menu_medical_root" name="Gestión Médica" />
+    <menuitem id="menu_medical_appointment" name="Citas Médicas" parent="menu_medical_root" action="action_medical_appointment"/>
+</odoo>

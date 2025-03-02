@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista de formulario para el modelo medical.patient -->
+    <record id="view_medical_patient_form" model="ir.ui.view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="arch" type="xml">
+            <form string="Paciente" class="patient-form">
+                <sheet>
+                    <group>
+                        <field name="name" string="Nombre" required="1"/>
+                        <field name="email" string="Correo" required="1"/>
+                        <field name="document_id" string="Documento" required="1"/>
+                        <field name="phone" string="Teléfono"/>
+                        <field name="age" string="Edad" required="1"/>
+                        <field name="doctor_id" string="Doctor Asignado"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista kanban mejorada para el modelo medical.patient -->
+    <record id="view_medical_patient_kanban" model="ir.ui.view">
+        <field name="name">medical.patient.kanban</field>
+        <field name="model">medical.patient</field>
+        <field name="arch" type="xml">
+            <kanban string="Pacientes" class="kanban-view">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card patient-card">
+                            <div class="patient-header">
+                                <strong class="patient-name"><field name="name"/></strong>
+                                <span class="patient-document"> 📞<field name="document_id"/></span>
+                                <span class="patient-age">🎂 <field name="age"/></span>
+                            </div>
+                            <div class="patient-info">
+                                <div class="patient-email">📧 <field name="email"/></div>
+                                <div class="patient-phone">📞 <field name="phone"/></div>
+                                <div class="patient-doctor">🩺 <strong>Doctor:</strong> <field name="doctor_id"/></div>
+                            </div>
+                            <div class="patient-actions">
+                                <button class="btn btn-primary edit-btn">Editar</button>
+                                <button class="btn btn-danger delete-btn">Eliminar</button>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista de búsqueda para el modelo medical.patient -->
+    <record id="view_medical_patient_search" model="ir.ui.view">
+        <field name="name">medical.patient.search</field>
+        <field name="model">medical.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="document_id"/>
+                <field name="phone"/>
+                <field name="age"/>
+                <field name="doctor_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de ventana con kanban y form -->
+    <record id="action_medical_patient" model="ir.actions.act_window">
+        <field name="name">Pacientes</field>
+        <field name="res_model">medical.patient</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    <!-- Menú raíz y submenú para Pacientes -->
+    <menuitem id="menu_medical_root" name="Gestión Médica"/>
+    <menuitem id="menu_medical_patient" name="Pacientes" parent="menu_medical_root" action="action_medical_patient"/>
+</odoo>

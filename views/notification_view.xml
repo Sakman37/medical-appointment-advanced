@@ -1,0 +1,61 @@
+<odoo>
+    <!-- Vista de formulario para el modelo medical.notification -->
+    <record id="view_medical_notification_form" model="ir.ui.view">
+        <field name="name">medical.notification.form</field>
+        <field name="model">medical.notification</field>
+        <field name="arch" type="xml">
+            <form string="Notificación">
+                <sheet>
+                    <group>
+                        <field name="appointment_id" string="Cita Médica" required="1"/>
+                        <field name="status" string="Estado" required="1"/>
+                        <field name="email_content" string="Contenido del Correo"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista kanban para el modelo medical.notification -->
+    <record id="view_medical_notification_kanban" model="ir.ui.view">
+        <field name="name">medical.notification.kanban</field>
+        <field name="model">medical.notification</field>
+        <field name="arch" type="xml">
+            <kanban string="Notificaciones">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="appointment_id"/></strong>
+                            <div><field name="status"/></div>
+                            <div><field name="email_content"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista de búsqueda para el modelo medical.notification -->
+    <record id="view_medical_notification_search" model="ir.ui.view">
+        <field name="name">medical.notification.search</field>
+        <field name="model">medical.notification</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="appointment_id"/>
+                <field name="status"/>
+                <field name="email_content"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de ventana con kanban y form -->
+    <record id="action_medical_notification" model="ir.actions.act_window">
+        <field name="name">Notificaciones</field>
+        <field name="res_model">medical.notification</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    <!-- Menú raíz y submenú para Notificaciones -->
+    <menuitem id="menu_medical_root" name="Gestión Médica"/>
+    <menuitem id="menu_medical_notification" name="Notificaciones" parent="menu_medical_root" action="action_medical_notification"/>
+</odoo>

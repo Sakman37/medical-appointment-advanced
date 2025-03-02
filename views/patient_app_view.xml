@@ -1,0 +1,48 @@
+<odoo>
+    <!-- Vista Kanban para mostrar citas -->
+    <record id="view_medical_appointment_kanban" model="ir.ui.view">
+        <field name="name">medical.appointment.kanban</field>
+        <field name="model">medical.appointment</field>
+        <field name="arch" type="xml">
+            <kanban string="Citas Médicas" class="appointment-kanban">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card appointment-card">
+                            <div class="appointment-info">
+                                <strong>Paciente:</strong> 
+                                <span t-if="record.patient_id" t-esc="record.patient_id.value"/>
+                                <br/>
+                                <strong>Doctor:</strong>  
+                                <span t-if="record.doctor_id" t-esc="record.doctor_id.value"/>
+                                <br/>
+                                <strong>Fecha:</strong> 
+                                <span t-if="record.date" t-esc="record.date.value"/>
+                                <br/>
+                                <strong>Estado:</strong> 
+                                <span t-if="record.state" t-esc="record.state.value"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista Kanban -->
+    <record id="action_medical_appointment" model="ir.actions.act_window">
+        <field name="name">Citas Médicas</field>
+        <field name="res_model">medical.appointment</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_medical_appointment_kanban"/>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Menú de Gestión Médica -->
+    <menuitem id="menu_medical_root" name="Gestión Médica"/>
+
+    <!-- Opción de menú para Citas Médicas -->
+    <menuitem id="menu_medical_appot"
+              name="Consultar Citas"
+              action="action_medical_appointment"
+              parent="menu_medical_root"/>
+</odoo>

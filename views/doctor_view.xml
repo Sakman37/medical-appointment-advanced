@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Grupo de Doctores -->
+        <record id="group_medical_doctor" model="res.groups">
+            <field name="name">Doctores Médicos</field>
+            <field name="category_id" ref="base.module_category_human_resources"/>
+        </record>
+
+        <!-- Vista de formulario para el modelo medical.doctor -->
+        <record id="view_medical_doctor_form" model="ir.ui.view">
+            <field name="name">medical.doctor.form</field>
+            <field name="model">medical.doctor</field>
+            <field name="arch" type="xml">
+                <form string="Doctor" class="doctor-form">
+                    <sheet>
+                        <group>
+                            <field name="name" string="Nombre" required="1"/>
+                            <field name="email" string="Correo" required="1"/>
+                            <field name="specialization" string="Especialización" required="1"/>
+                            <field name="phone" string="Teléfono"/>
+                        </group>
+                        <group string="Disponibilidad">
+                            <field name="day_of_week" string="Día de la Semana"/>
+                            <field name="start_time" string="Hora de Inicio"/>
+                            <field name="end_time" string="Hora de Fin"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+
+        <!-- Vista kanban mejorada para el modelo medical.doctor -->
+        <record id="view_medical_doctor_kanban" model="ir.ui.view">
+            <field name="name">medical.doctor.kanban</field>
+            <field name="model">medical.doctor</field>
+            <field name="arch" type="xml">
+                <kanban string="Doctores" class="kanban-view" js_class="medical_doctor_kanban">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card doctor-card">
+                                <div class="doctor-header">
+                                    <strong class="doctor-name"><field name="name"/></strong>
+                                    <span class="doctor-specialization"><field name="specialization"/></span>
+                                </div>
+                                <div class="doctor-info">
+                                    <div class="doctor-email"> 📧 <field name="email"/></div>
+                                    <div class="doctor-phone">📞 <field name="phone"/></div>
+                                    <div class="doctor-schedule">
+                                        ⏰ <strong>Horario:</strong> <field name="day_of_week"/> - <field name="start_time"/> a <field name="end_time"/>
+                                    </div>
+                                </div>
+                                <div class="doctor-actions">
+                                    <button class="btn btn-primary edit-btn">Editar</button>
+                                    <button class="btn btn-danger delete-btn">Eliminar</button>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Vista de búsqueda para el modelo medical.doctor -->
+        <record id="view_medical_doctor_search" model="ir.ui.view">
+            <field name="name">medical.doctor.search</field>
+            <field name="model">medical.doctor</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="specialization"/>
+                    <field name="phone"/>
+                    <field name="day_of_week"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Acción de ventana con kanban y form -->
+        <record id="action_medical_doctor" model="ir.actions.act_window">
+            <field name="name">Doctores</field>
+            <field name="res_model">medical.doctor</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="groups_id" eval="[(4, ref('group_medical_doctor'))]"/>
+        </record>
+
+        <!-- Menú raíz y submenú para Doctores -->
+        <menuitem id="menu_medical_root" name="Gestión Médica"/>
+
+        <menuitem id="menu_medical_doctor"
+                  name="Doctores"
+                  parent="menu_medical_root"
+                  action="action_medical_doctor"
+                  groups="medicalbackend.group_medical_doctor"/>
+    </data>
+</odoo>

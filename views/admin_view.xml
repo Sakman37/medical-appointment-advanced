@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista de formulario para el modelo medical.admin -->
+    <record id="view_medical_admin_form" model="ir.ui.view">
+        <field name="name">medical.admin.form</field>
+        <field name="model">medical.admin</field>
+        <field name="arch" type="xml">
+            <form string="Administración Médica" class="admin-form">
+                <sheet>
+                    <group>
+                        <field name="total_appointments" string="Total de Citas" readonly="1"/>
+                        <field name="canceled_appointments" string="Citas Canceladas" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista kanban mejorada para el modelo medical.admin -->
+    <record id="view_medical_admin_kanban" model="ir.ui.view">
+        <field name="name">medical.admin.kanban</field>
+        <field name="model">medical.admin</field>
+        <field name="arch" type="xml">
+            <kanban string="Administradores Médicos" class="kanban-view">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card admin-card">
+                            <div class="admin-header">
+                                <strong class="admin-total">📋 Citas: <field name="total_appointments"/></strong>
+                            </div>
+                            <div class="admin-info">
+                                <div class="admin-canceled">❌ Canceladas: <field name="canceled_appointments"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista de búsqueda para el modelo medical.admin -->
+    <record id="view_medical_admin_search" model="ir.ui.view">
+        <field name="name">medical.admin.search</field>
+        <field name="model">medical.admin</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="total_appointments"/>
+                <field name="canceled_appointments"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de ventana con kanban y form -->
+    <record id="action_medical_admin" model="ir.actions.act_window">
+        <field name="name">Administradores Médicos</field>
+        <field name="res_model">medical.admin</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    <!-- Menú raíz y submenú para Administración Médica -->
+    <menuitem id="menu_medical_root" name="Gestión Médica"/>
+    <menuitem id="menu_medical_admin" name="Administración Médica" parent="menu_medical_root" action="action_medical_admin"/>
+</odoo>
